@@ -1,0 +1,259 @@
+/* =====================================================================
+   PRIME TURN — "IMPERIAL EMERALD & LIQUID GOLD"  (royal style layer)
+   ---------------------------------------------------------------------
+   One file styles every page. It only adds looks (colour, glow, motion,
+   icons) — it never touches the logic of the site.
+   To remove the whole look: delete the <link ... royal.css> line.
+   ===================================================================== */
+:root{
+  --rt-gold:#D4AF37;--rt-gold-hi:#F6E7A8;--rt-gold-lo:#8A6A1C;--rt-champ:#FFF6CF;
+  --rt-foil:linear-gradient(135deg,#8A6A1C 0%,#F3E3A1 26%,#D4AF37 48%,#FBF1BF 70%,#A8801F 100%);
+  --rt-foil-text:linear-gradient(180deg,#FFF9DE 0%,#F3E3A1 38%,#D4AF37 62%,#B8901F 100%);
+  --rt-em-deep:#010d09;--rt-em:#04261b;--rt-em-mid:#0a4f34;--rt-em-lit:#0f7a4e;
+  --rt-lattice:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='56' height='56'%3E%3Cpath d='M28 4 52 28 28 52 4 28Z' fill='none' stroke='rgba(212,175,55,.10)' stroke-width='1'/%3E%3Cpath d='M28 17 39 28 28 39 17 28Z' fill='none' stroke='rgba(212,175,55,.10)' stroke-width='.7'/%3E%3Ccircle cx='28' cy='28' r='1.3' fill='rgba(212,175,55,.22)'/%3E%3C/svg%3E");
+}
+
+/* ---------- 1. PALETTE (dashboard, asset page, admin) ---------- */
+html.rt-app{
+  --gold:#D4AF37;--gold-hi:#F6E7A8;--gold-lo:#9A7616;
+  --gold-grad:var(--rt-foil);
+  --plat:#D4AF37;--plat-hi:#F6E7A8;--plat-lo:#8A6A1C;
+  --silver:#D4AF37;--silver-hi:#F6E7A8;--silver-lo:#8A6A1C;
+  --grad:var(--rt-foil);
+  --chrome:linear-gradient(180deg,#FFF6CF 0%,#F3E3A1 34%,#B8901F 54%,#F8ECB8 74%,#D4AF37 100%);
+  --page:#f4eedd;--soft:#faf5e6;--line:#e3d6ad;--lattice:var(--rt-lattice);
+}
+html.rt-app[data-theme="dark"]{
+  --page:#010805;--card:#07170f;--soft:#0c2218;--line:#2c3a22;
+  --ink:#f3efe0;--head:#fbf4d9;--muted:#a9b9a4;
+  --lattice:var(--rt-lattice);
+}
+
+/* ---------- 2. ATMOSPHERE ---------- */
+html.rt-app body{
+  background-image:
+    radial-gradient(900px 420px at 50% -120px,rgba(212,175,55,.16),transparent 70%),
+    radial-gradient(700px 500px at 100% 100%,rgba(15,122,78,.18),transparent 65%),
+    var(--rt-lattice);
+  background-size:auto,auto,56px 56px;
+}
+html.rt-app .app,html.rt-app .auth,html.rt-app .auth-wrap{
+  background-image:
+    radial-gradient(520px 260px at 50% -40px,rgba(212,175,55,.13),transparent 70%),
+    var(--rt-lattice);
+  background-size:auto,56px 56px;
+  box-shadow:0 0 0 1px rgba(212,175,55,.25),0 40px 90px rgba(0,0,0,.35);
+}
+html.rt-app ::selection{background:rgba(212,175,55,.45);color:#fff}
+html.rt-app *{scrollbar-color:#B8901F transparent}
+html.rt-app ::-webkit-scrollbar{width:8px;height:8px}
+html.rt-app ::-webkit-scrollbar-thumb{background:linear-gradient(#F3E3A1,#B8901F);border-radius:9px}
+#rtMotes{position:fixed;inset:0;width:100%;height:100%;pointer-events:none;z-index:9998}
+#rtProg{position:fixed;left:0;top:0;height:3px;width:0;z-index:60;background:var(--rt-foil);box-shadow:0 0 12px rgba(243,227,161,.9);transition:width .1s linear}
+
+/* ---------- 3. TYPOGRAPHY SHEEN ---------- */
+@keyframes rtFoil{to{background-position:-250% 0}}
+@keyframes rtRise{from{opacity:0;transform:translateY(18px) scale(.985)}to{opacity:1;transform:none}}
+@keyframes rtHalo{0%,100%{box-shadow:0 0 0 3px #D4AF37,0 0 26px rgba(212,175,55,.45)}50%{box-shadow:0 0 0 3px #F6E7A8,0 0 60px rgba(246,231,168,.8)}}
+@keyframes rtSweep{0%,60%{transform:translateX(-140%) skewX(-20deg)}100%{transform:translateX(320%) skewX(-20deg)}}
+@keyframes rtGlow{0%,100%{filter:drop-shadow(0 0 4px rgba(212,175,55,.45))}50%{filter:drop-shadow(0 0 11px rgba(246,231,168,.95))}}
+@keyframes rtFloat{0%,100%{transform:translateY(0)}50%{transform:translateY(-7px)}}
+@keyframes rtPulseDot{0%,100%{opacity:.5;transform:scale(1)}50%{opacity:1;transform:scale(1.35)}}
+
+html.rt-app .brand-name{
+  background:linear-gradient(100deg,#8A6A1C 0%,#F6E7A8 20%,#D4AF37 40%,#FFF9DE 55%,#D4AF37 70%,#8A6A1C 100%);
+  background-size:250% 100%;-webkit-background-clip:text;background-clip:text;
+  -webkit-text-fill-color:transparent;color:transparent;animation:rtFoil 7s linear infinite;
+  filter:drop-shadow(0 1px 0 rgba(0,0,0,.35));
+}
+html.rt-app .brand-name b{-webkit-text-fill-color:transparent;color:transparent}
+html.rt-app .brand img{animation:rtGlow 4s ease-in-out infinite}
+html.rt-app .bal-amount{
+  background:var(--rt-foil-text);-webkit-background-clip:text;background-clip:text;color:transparent;
+  filter:drop-shadow(0 2px 10px rgba(212,175,55,.35));
+}
+html.rt-app .sec-title{color:var(--head);text-shadow:0 0 18px rgba(212,175,55,.25)}
+html.rt-app .sec-title::before{content:"";width:9px;height:9px;flex:none;transform:rotate(45deg);background:var(--rt-foil);box-shadow:0 0 10px rgba(243,227,161,.9);border-radius:1px}
+html.rt-app .sec-title::after{background:linear-gradient(90deg,#D4AF37,rgba(212,175,55,.0))}
+
+/* ---------- 4. HEADER & DOCK ---------- */
+html.rt-app .header{
+  backdrop-filter:blur(14px) saturate(1.3);-webkit-backdrop-filter:blur(14px) saturate(1.3);
+  border-bottom:1px solid transparent;
+  border-image:linear-gradient(90deg,transparent,#D4AF37 30%,#F6E7A8 50%,#D4AF37 70%,transparent) 1;
+}
+html.rt-app[data-theme="dark"] .header{background:rgba(1,10,6,.9)}
+html.rt-app .live{border-color:rgba(212,175,55,.5);box-shadow:0 0 14px rgba(23,163,84,.25)}
+html.rt-app .dock{
+  background:linear-gradient(160deg,#010d09 0%,#04261b 60%,#0a4f34 140%);
+  border-top:0;
+  box-shadow:0 -14px 36px rgba(0,0,0,.5),inset 0 1px 0 rgba(246,231,168,.35);
+}
+html.rt-app .dock::before{content:"";position:absolute;left:8%;right:8%;top:0;height:2px;background:var(--rt-foil);box-shadow:0 0 14px rgba(243,227,161,.85);border-radius:0 0 4px 4px}
+html.rt-app .dock button.on{background:var(--rt-foil);box-shadow:0 8px 20px rgba(212,175,55,.45),inset 0 1px 0 rgba(255,255,255,.7);transform:translateY(-3px)}
+html.rt-app .dock button:not(.on):not(.logout) svg{stroke:url(#rtGoldG) #F6E7A8;filter:drop-shadow(0 0 4px rgba(212,175,55,.45))}
+html.rt-app .dock button:not(.on):not(.logout){color:#e9d9a0}
+
+/* ---------- 5. BALANCE CARD ---------- */
+html.rt-app .balance{
+  background:
+    radial-gradient(420px 220px at 105% -10%,rgba(246,231,168,.38),transparent 65%),
+    radial-gradient(300px 200px at -10% 120%,rgba(15,122,78,.55),transparent 70%),
+    linear-gradient(145deg,#010d09 0%,#06382a 52%,#0f7a4e 130%);
+  box-shadow:0 22px 46px rgba(0,0,0,.45),0 0 0 1px rgba(212,175,55,.65),0 0 44px rgba(212,175,55,.2);
+  transform-style:preserve-3d;transition:transform .25s ease-out;
+}
+html.rt-app .balance::before{border:1px solid rgba(246,231,168,.5);box-shadow:inset 0 0 22px rgba(212,175,55,.12)}
+html.rt-app .rt-shine{position:absolute;top:-30%;left:0;width:34%;height:160%;z-index:0;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(255,246,207,.22),transparent);animation:rtSweep 7s ease-in-out infinite}
+html.rt-app .bal-label svg{stroke:url(#rtGoldG) #F6E7A8;filter:drop-shadow(0 0 5px rgba(212,175,55,.6))}
+html.rt-app .bal-dots button.on{background:var(--rt-foil);box-shadow:0 0 10px rgba(243,227,161,.9)}
+html.rt-app .stat{
+  border:1px solid transparent;
+  background:linear-gradient(var(--card),var(--card)) padding-box,var(--rt-foil) border-box;
+  box-shadow:0 8px 18px rgba(0,0,0,.18),0 0 16px rgba(212,175,55,.08);
+}
+html.rt-app .stat .si{background:linear-gradient(145deg,#010d09,#0a4f34);box-shadow:inset 0 0 0 1px rgba(246,231,168,.6),0 0 12px rgba(212,175,55,.3)}
+html.rt-app .stat .si svg{stroke:url(#rtGoldG) #F6E7A8}
+
+/* ---------- 6. BUTTONS ---------- */
+html.rt-app .btn-gold,html.rt-app .btn.btn-gold{
+  position:relative;overflow:hidden;background:var(--rt-foil);background-size:200% 100%;color:#1a1204;
+  text-shadow:0 1px 0 rgba(255,255,255,.5);
+  box-shadow:0 10px 26px rgba(212,175,55,.42),inset 0 1px 0 rgba(255,255,255,.75),inset 0 -2px 0 rgba(138,106,28,.45);
+}
+html.rt-app .btn-gold::after{content:"";position:absolute;top:0;left:0;width:36%;height:100%;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,.65),transparent);animation:rtSweep 4.5s ease-in-out infinite}
+html.rt-app .btn-gold:hover{filter:brightness(1.07) saturate(1.1)}
+html.rt-app .btn-navy{background:linear-gradient(145deg,#010d09,#0a4f34);box-shadow:0 8px 20px rgba(0,0,0,.35),inset 0 0 0 1px rgba(212,175,55,.55)}
+html.rt-app .btn-line{border:1.5px solid rgba(212,175,55,.6)}
+html.rt-app .btn-line:hover{box-shadow:0 0 0 3px rgba(212,175,55,.18)}
+html.rt-app .btn-ghost{box-shadow:0 8px 18px rgba(0,0,0,.2),inset 0 0 0 1px rgba(212,175,55,.5)}
+
+/* ---------- 7. QUICK-ACTION JEWELS ---------- */
+html.rt-app .fn{
+  position:relative;overflow:hidden;border:1px solid rgba(212,175,55,.35);
+  background:linear-gradient(180deg,var(--card),var(--soft));
+  box-shadow:0 8px 20px rgba(0,0,0,.14);transition:transform .25s cubic-bezier(.2,.8,.2,1),box-shadow .25s,border-color .25s;
+}
+html.rt-app .fn::before{content:"";position:absolute;inset:0;background:radial-gradient(120px 80px at 50% 0%,rgba(246,231,168,.18),transparent 70%);opacity:0;transition:opacity .3s}
+html.rt-app .fn:hover{transform:translateY(-4px);border-color:#F3E3A1;box-shadow:0 16px 30px rgba(0,0,0,.28),0 0 24px rgba(212,175,55,.3)}
+html.rt-app .fn:hover::before{opacity:1}
+html.rt-app .fn .ic{
+  position:relative;
+  background:radial-gradient(circle at 30% 25%,#13805a 0%,#06382a 55%,#010d09 100%);
+  box-shadow:inset 0 0 0 1.5px rgba(246,231,168,.75),inset 0 6px 10px rgba(255,255,255,.12),0 0 0 3px rgba(212,175,55,.12),0 8px 16px rgba(0,0,0,.35);
+  transition:transform .35s cubic-bezier(.2,.8,.2,1)}
+html.rt-app .fn:hover .ic{transform:rotate(-6deg) scale(1.08)}
+html.rt-app .fn .ic svg{stroke:url(#rtGoldG) #F6E7A8;filter:drop-shadow(0 0 5px rgba(212,175,55,.6))}
+html.rt-app .fn:nth-child(1){animation:rtRise .55s .05s both}html.rt-app .fn:nth-child(2){animation:rtRise .55s .12s both}
+html.rt-app .fn:nth-child(3){animation:rtRise .55s .19s both}html.rt-app .fn:nth-child(4){animation:rtRise .55s .26s both}
+html.rt-app .fn:nth-child(5){animation:rtRise .55s .33s both}html.rt-app .fn:nth-child(6){animation:rtRise .55s .40s both}
+html.rt-app .fn:nth-child(7){animation:rtRise .55s .47s both}html.rt-app .fn:nth-child(8){animation:rtRise .55s .54s both}
+
+/* ---------- 8. LISTS, SHEETS, SLIDER ---------- */
+html.rt-app .tx-list{border:1px solid rgba(212,175,55,.3);box-shadow:0 12px 28px rgba(0,0,0,.18)}
+html.rt-app .tx{animation:rtRise .5s both}
+html.rt-app .tx:nth-child(2){animation-delay:.06s}html.rt-app .tx:nth-child(3){animation-delay:.12s}
+html.rt-app .tx:nth-child(4){animation-delay:.18s}html.rt-app .tx:nth-child(5){animation-delay:.24s}
+html.rt-app .tx+.tx{border-top:1px solid transparent;border-image:linear-gradient(90deg,transparent,rgba(212,175,55,.35),transparent) 1}
+html.rt-app .tx .out{background:linear-gradient(145deg,#2a2208,#4b3a0c);color:#F6E7A8;box-shadow:inset 0 0 0 1px rgba(212,175,55,.5)}
+html.rt-app .tx .in{box-shadow:inset 0 0 0 1px rgba(95,227,160,.35)}
+html.rt-app .slider{border:2px solid transparent;outline:0;background:linear-gradient(#000,#000) padding-box,var(--rt-foil) border-box;box-shadow:0 18px 40px rgba(0,0,0,.4),0 0 30px rgba(212,175,55,.2)}
+html.rt-app .sheet{border-top:0;position:relative;box-shadow:0 -20px 60px rgba(0,0,0,.55),0 -2px 28px rgba(212,175,55,.3)}
+html.rt-app .sheet::before{content:"";position:absolute;left:0;right:0;top:0;height:3px;background:var(--rt-foil);border-radius:26px 26px 0 0;box-shadow:0 0 16px rgba(243,227,161,.9)}
+html.rt-app .grab{background:linear-gradient(90deg,transparent,#D4AF37,transparent)}
+html.rt-app .sheet h3{background:var(--rt-foil-text);-webkit-background-clip:text;background-clip:text;color:transparent}
+html.rt-app[data-theme="light"] .sheet h3,html.rt-app:not([data-theme="dark"]) .sheet h3{background:linear-gradient(180deg,#04261b,#0a4f34);-webkit-background-clip:text;background-clip:text}
+
+/* ---------- 9. SIGN-IN / SIGN-UP SCREEN ---------- */
+html.rt-app .hero{
+  background:
+    radial-gradient(500px 260px at 90% 0%,rgba(246,231,168,.4),transparent 65%),
+    radial-gradient(380px 240px at 0% 100%,rgba(15,122,78,.6),transparent 70%),
+    linear-gradient(150deg,#010d09 0%,#06382a 60%,#0f7a4e 130%);
+}
+html.rt-app .hero::after{height:4px;background:var(--rt-foil);box-shadow:0 0 18px rgba(243,227,161,.9)}
+html.rt-app .disc{animation:rtHalo 4.5s ease-in-out infinite,rtFloat 6s ease-in-out infinite}
+html.rt-app .hero .nm{background:var(--rt-foil);background-size:250% 100%;-webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;color:transparent;animation:rtFoil 6s linear infinite}
+html.rt-app .hero .nm b{-webkit-text-fill-color:transparent;color:transparent}
+html.rt-app .hero h1{text-shadow:0 4px 24px rgba(0,0,0,.45)}
+html.rt-app .card{border-top:0;background:linear-gradient(var(--card),var(--card)) padding-box,var(--rt-foil) border-box;border:1.5px solid transparent;
+  box-shadow:0 24px 54px rgba(0,0,0,.3),0 0 40px rgba(212,175,55,.14);animation:rtRise .7s .1s both}
+html.rt-app .fld input:focus,html.rt-app .fld select:focus,html.rt-app .fld textarea:focus,
+html.rt-app input:focus,html.rt-app select:focus,html.rt-app textarea:focus{
+  border-color:#D4AF37;outline:none;box-shadow:0 0 0 3px rgba(212,175,55,.25),0 0 18px rgba(212,175,55,.18)}
+html.rt-app .terms .bar{background:linear-gradient(145deg,#010d09,#06382a);border-bottom:0;position:sticky}
+html.rt-app .terms .bar::after{content:"";position:absolute;left:0;right:0;bottom:0;height:3px;background:var(--rt-foil)}
+html.rt-app .terms .bar h2{background:var(--rt-foil-text);-webkit-background-clip:text;background-clip:text;color:transparent}
+html.rt-app .rt-crown{display:block;width:62px;height:auto;margin:0 auto 6px;animation:rtFloat 5s ease-in-out infinite,rtGlow 3.5s ease-in-out infinite}
+
+/* ---------- 10. ASSET PAGE ---------- */
+html.rt-app .header::after{box-shadow:0 0 16px rgba(243,227,161,.8)}
+html.rt-app .hero h1{background:var(--chrome);-webkit-background-clip:text;background-clip:text}
+html.rt-app .plan{
+  border:1.5px solid transparent;border-top:3px solid transparent;
+  background:linear-gradient(var(--card),var(--card)) padding-box,var(--rt-foil) border-box;
+  box-shadow:0 16px 36px rgba(0,0,0,.22),0 0 24px rgba(212,175,55,.08);
+}
+html.rt-app .plan:hover{transform:translateY(-6px);box-shadow:0 26px 54px rgba(0,0,0,.35),0 0 38px rgba(212,175,55,.3)}
+html.rt-app .plan .price,html.rt-app .price{background:var(--rt-foil-text);-webkit-background-clip:text;background-clip:text;color:transparent}
+html.rt-app[data-theme="light"] .price{background:linear-gradient(180deg,#8A6A1C,#5d4710);-webkit-background-clip:text;background-clip:text}
+html.rt-app .tier-ribbon{background:linear-gradient(145deg,#010d09,#06382a);border:1px solid rgba(246,231,168,.7);color:#F6E7A8;box-shadow:0 0 14px rgba(212,175,55,.35)}
+html.rt-app .plan .btn,html.rt-app .btn:not(.outline):not(.btn-line):not(.btn-gold):not(.btn-navy):not(.btn-ghost){
+  position:relative;overflow:hidden;background:var(--rt-foil);color:#1a1204;border-color:rgba(255,246,207,.8)}
+html.rt-app .modal{border:1px solid rgba(246,231,168,.6);box-shadow:0 24px 70px rgba(0,0,0,.7),0 0 40px rgba(212,175,55,.2)}
+
+/* ---------- 11. ADMIN (calm, same palette) ---------- */
+html.rt-app .topbar::after{height:3px;box-shadow:0 0 14px rgba(243,227,161,.8)}
+html.rt-app .primary{background:linear-gradient(135deg,#0a4f34,#04261b);box-shadow:inset 0 0 0 1px rgba(212,175,55,.7),0 6px 16px rgba(0,0,0,.25)}
+html.rt-app .action-card{box-shadow:0 10px 22px rgba(0,0,0,.3),inset 0 0 0 1px rgba(212,175,55,.45)}
+html.rt-app .action-card:hover{box-shadow:0 16px 30px rgba(0,0,0,.4),inset 0 0 0 1px #F3E3A1,0 0 24px rgba(212,175,55,.3)}
+html.rt-app .login-card{box-shadow:0 30px 90px rgba(0,0,0,.55),0 0 50px rgba(212,175,55,.2)}
+html.rt-app .section-card{border-color:rgba(212,175,55,.3)}
+
+/* =====================================================================
+   INDEX PAGE (html.rt-site)
+   ===================================================================== */
+html.rt-site body{background-image:
+  radial-gradient(900px 500px at 12% 0%,rgba(212,175,55,.09),transparent 60%),
+  radial-gradient(900px 600px at 100% 40%,rgba(16,185,129,.10),transparent 60%),
+  var(--rt-lattice);background-size:auto,auto,56px 56px;background-attachment:fixed}
+html.rt-site .btn-em{
+  position:relative;overflow:hidden;color:#FFF6CF;
+  background:linear-gradient(145deg,#06382a 0%,#0f7a4e 55%,#06382a 100%);
+  border:1px solid rgba(246,231,168,.8);
+  box-shadow:0 10px 30px rgba(16,185,129,.35),0 0 0 3px rgba(212,175,55,.12),inset 0 1px 0 rgba(255,255,255,.3);
+  text-shadow:0 1px 0 rgba(0,0,0,.4)}
+html.rt-site .btn-em::before{content:"";position:absolute;top:0;left:0;width:36%;height:100%;pointer-events:none;
+  background:linear-gradient(90deg,transparent,rgba(255,246,207,.5),transparent);animation:rtSweep 4.2s ease-in-out infinite}
+html.rt-site .btn-line{border-color:rgba(212,175,55,.75);color:#F6E7A8;box-shadow:inset 0 0 0 1px rgba(212,175,55,.15)}
+html.rt-site .btn-line:hover{background:rgba(212,175,55,.12);box-shadow:0 0 22px rgba(212,175,55,.35)}
+html.rt-site .tier{will-change:transform;transform-style:preserve-3d}
+html.rt-site .tier-btn{background:var(--rt-foil);background-size:200% 100%;color:#1a1204;font-weight:800;box-shadow:0 10px 26px rgba(212,175,55,.35),inset 0 1px 0 rgba(255,255,255,.7)}
+html.rt-site .step .ic,html.rt-site .perk .ic,html.rt-site .trust .it .ic{
+  position:relative;display:grid;place-items:center;
+  background:radial-gradient(circle at 30% 25%,#13805a,#06382a 60%,#010d09);
+  box-shadow:inset 0 0 0 1.5px rgba(246,231,168,.75),0 0 0 4px rgba(212,175,55,.12),0 10px 22px rgba(0,0,0,.45),0 0 26px rgba(212,175,55,.25);
+  border-radius:16px;animation:rtGlow 4s ease-in-out infinite}
+html.rt-site .rt-ico{width:60%;height:60%;fill:none;stroke:url(#rtGoldG) #F6E7A8;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}
+html.rt-site .t-ic .rt-ico{width:1.1em;height:1.1em;vertical-align:-.18em}
+html.rt-site .acc{border:1px solid rgba(212,175,55,.22);transition:border-color .3s,box-shadow .3s}
+html.rt-site .acc[open]{border-color:rgba(243,227,161,.7);box-shadow:0 0 28px rgba(212,175,55,.16)}
+html.rt-site footer .rule{height:4px;box-shadow:0 0 18px rgba(243,227,161,.7)}
+html.rt-site .brand img{animation:rtGlow 4s ease-in-out infinite}
+html.rt-site .metal{filter:drop-shadow(0 0 14px rgba(212,175,55,.35))}
+html.rt-site .orn span{animation:rtPulseDot 3s ease-in-out infinite}
+html.rt-site #chatFab{background:linear-gradient(145deg,#8A6A1C,#F3E3A1 45%,#D4AF37);color:#1a1204;box-shadow:0 10px 28px rgba(0,0,0,.55),0 0 30px rgba(212,175,55,.55)}
+html.rt-site #chatFab::before{content:"";position:absolute;inset:-6px;border-radius:50%;border:1px solid rgba(243,227,161,.55);animation:rtPulseDot 2.6s ease-in-out infinite;pointer-events:none}
+html.rt-site #chatFab{position:relative}
+
+@media (prefers-reduced-motion:reduce){
+  html.rt-app *,html.rt-site *{animation-duration:.001ms!important;animation-iteration-count:1!important}
+  #rtMotes{display:none}
+}
+
+/* footer breathing room on phones (side padding was being zeroed) */
+html.rt-site footer .fgrid{padding-left:max(20px,env(safe-area-inset-left));padding-right:max(20px,env(safe-area-inset-right))}
+@media(min-width:640px){html.rt-site footer .fgrid{padding-left:24px;padding-right:24px}}
+@media(min-width:1024px){html.rt-site footer .fgrid{padding-left:32px;padding-right:32px}}

@@ -1,0 +1,19 @@
+{
+  "name": "Prime Turn",
+  "short_name": "Prime Turn",
+  "description": "Prime Turn: royal investment tiers from Knight to King. Grow financially.",
+  "id": "./",
+  "start_url": "./dashboard.html?view=login",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#050A08",
+  "theme_color": "#050A08",
+  "lang": "en",
+  "categories": ["finance", "business"],
+  "icons": [
+    { "src": "icons/icon-192.png", "sizes": "192x192", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "any" },
+    { "src": "icons/icon-maskable-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
+  ]
+}

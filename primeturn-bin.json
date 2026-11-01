@@ -1,0 +1,23 @@
+{
+  "customers": [],
+  "payments": [],
+  "withdrawals": [],
+  "referrals": [],
+  "giftCodes": [],
+  "deleted": [],
+  "settings": {
+    "bankName": "",
+    "accountName": "",
+    "bankAccount": "",
+    "whatsapp": "",
+    "telegram": "",
+    "announcement": null,
+    "products": {
+      "knight": { "price": 7000,  "profit": 38000 },
+      "duke":   { "price": 9800,  "profit": 82500 },
+      "prince": { "price": 16150, "profit": 119300 },
+      "queen":  { "price": 25100, "profit": 194000 },
+      "king":   { "price": 32000, "profit": 270000 }
+    }
+  }
+}
